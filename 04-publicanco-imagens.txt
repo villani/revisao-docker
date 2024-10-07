@@ -1,0 +1,8 @@
+$ ## PUBLICANDO IMAGENS NO DOCKERHUB ##
+$ # Copiando hml para a raiz do nginx
+$ # Definindo comandos para subir nginx
+$ # Criando e executando imagem
+$ # Criar conta no dockerhub
+$ # Logar no dockerhub e subir imagem
+$ # Dockerhub remove as imagens não utilizadas por mais de 90 dias
+$ 

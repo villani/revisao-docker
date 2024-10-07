@@ -1,0 +1,253 @@
+$ ## TRABALHANDO COM DOCKERFILE ##
+$ # Definindo imagem de origem
+$ # Construindo e executando uma imagem
+$ # Diferença entre ENTRYPOINT e CMD
+$ 
+$ ## REVISÃO ##
+$ # Registry de imagens: hub.docker.com
+$ # Apenas baixar imagens
+$ # Listando imagens
+$ # Removendo imagens baixadas
+$ # Executando comandos dentro da imagem
+$ # Construindo a imagem definindo tag e local do Dockerfile
+$ # Definindo diretório raiz de trabalho
+$ # Executando comandos aninhados
+$ # Copiando arquivos
+$ 
+$ ## RETOMANDO O DOCKERFILE ##
+$ # Acessando o repo de uma imagem e analisando o Dockerfile dela
+$ # Analisando os fontes dos executáveis no Dockerfile
+$ 
+
+$ ## EXECUÇÃO DO ROTEIRO ##
+$ 
+$ # Listando imagens
+$ PS1='> '
+> 
+> podman images
+REPOSITORY                TAG         IMAGE ID      CREATED       SIZE
+docker.io/library/ubuntu  latest      b1e9cef3f297  5 weeks ago   80.6 MB
+docker.io/library/nginx   latest      9527c0f683c3  7 weeks ago   192 MB
+quay.io/podman/hello      latest      5dd467fce50b  4 months ago  787 kB
+> 
+> podman image list
+REPOSITORY                TAG         IMAGE ID      CREATED       SIZE
+docker.io/library/ubuntu  latest      b1e9cef3f297  5 weeks ago   80.6 MB
+docker.io/library/nginx   latest      9527c0f683c3  7 weeks ago   192 MB
+quay.io/podman/hello      latest      5dd467fce50b  4 months ago  787 kB
+> 
+> # Apenas baixar a imagem
+> docker pull ubuntu/nginx
+bash: docker: comando não encontrado...
+Instalar pacote "podman-docker" para fornecer o comando "docker"? [N/y] 
+
+
+> podman pull ubuntu/nginx
+
+Error: ^C
+> podman pull ubuntu/zookeeper
+✔ docker.io/ubuntu/zookeeper:latest
+Trying to pull docker.io/ubuntu/zookeeper:latest...
+Getting image source signatures
+Copying blob cac549354a26 done  
+Copying blob addfe3c4441c [--------------------------------------] 0.0b / 84.0MiB
+Copying blob c0d3d875e1e6 done  
+Copying blob 8e4c5b44a52a done  
+Copying blob 8252025d23d6 done  
+^C> 
+> 
+> podman images
+REPOSITORY                TAG         IMAGE ID      CREATED       SIZE
+docker.io/library/ubuntu  latest      b1e9cef3f297  5 weeks ago   80.6 MB
+docker.io/library/nginx   latest      9527c0f683c3  7 weeks ago   192 MB
+quay.io/podman/hello      latest      5dd467fce50b  4 months ago  787 kB
+> 
+> # Removendo imagens
+> podman rmi hello
+Untagged: quay.io/podman/hello:latest
+Deleted: 5dd467fce50b56951185da365b5feee75409968cbab5767b9b59e325fb2ecbc0
+> 
+> podman images
+REPOSITORY                TAG         IMAGE ID      CREATED      SIZE
+docker.io/library/ubuntu  latest      b1e9cef3f297  5 weeks ago  80.6 MB
+docker.io/library/nginx   latest      9527c0f683c3  7 weeks ago  192 MB
+> 
+> # Construindo imagem podman build -t villani/webserver
+> podman build -t villani/webserver:latest .
+STEP 1/4: FROM nginx:latest
+STEP 2/4: RUN apt-get update &&     apt-get install -y vim
+Ign:1 http://deb.debian.org/debian bookworm InRelease
+Ign:2 http://deb.debian.org/debian bookworm-updates InRelease
+Ign:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Ign:1 http://deb.debian.org/debian bookworm InRelease
+Ign:2 http://deb.debian.org/debian bookworm-updates InRelease
+Ign:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Ign:1 http://deb.debian.org/debian bookworm InRelease
+Ign:2 http://deb.debian.org/debian bookworm-updates InRelease
+Ign:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Err:1 http://deb.debian.org/debian bookworm InRelease
+  Connection failed [IP: 151.101.94.132 80]
+Err:2 http://deb.debian.org/debian bookworm-updates InRelease
+  Connection failed [IP: 151.101.94.132 80]
+Err:3 http://deb.debian.org/debian-security bookworm-security InRelease
+  Connection failed [IP: 151.101.94.132 80]
+Reading package lists...
+W: Failed to fetch http://deb.debian.org/debian/dists/bookworm/InRelease  Connection failed [IP: 151.101.94.132 80]
+W: Failed to fetch http://deb.debian.org/debian/dists/bookworm-updates/InRelease  Connection failed [IP: 151.101.94.132 80]
+W: Failed to fetch http://deb.debian.org/debian-security/dists/bookworm-security/InRelease  Connection failed [IP: 151.101.94.132 80]
+W: Some index files failed to download. They have been ignored, or old ones used instead.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+E: Unable to locate package vim
+Error: building at STEP "RUN apt-get update &&     apt-get install -y vim": while running runtime: exit status 100
+> podman build -t villani/webserver:latest .
+STEP 1/4: FROM nginx:latest
+STEP 2/4: RUN apt-get update &&     apt-get install -y code
+Ign:1 http://deb.debian.org/debian bookworm InRelease
+Ign:2 http://deb.debian.org/debian bookworm-updates InRelease
+Ign:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Ign:1 http://deb.debian.org/debian bookworm InRelease
+Ign:2 http://deb.debian.org/debian bookworm-updates InRelease
+Ign:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Ign:1 http://deb.debian.org/debian bookworm InRelease
+Ign:2 http://deb.debian.org/debian bookworm-updates InRelease
+Ign:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Err:1 http://deb.debian.org/debian bookworm InRelease
+  Connection failed [IP: 151.101.178.132 80]
+Err:2 http://deb.debian.org/debian bookworm-updates InRelease
+  Connection failed [IP: 151.101.178.132 80]
+Err:3 http://deb.debian.org/debian-security bookworm-security InRelease
+  Connection failed [IP: 151.101.178.132 80]
+Reading package lists...
+W: Failed to fetch http://deb.debian.org/debian/dists/bookworm/InRelease  Connection failed [IP: 151.101.178.132 80]
+W: Failed to fetch http://deb.debian.org/debian/dists/bookworm-updates/InRelease  Connection failed [IP: 151.101.178.132 80]
+W: Failed to fetch http://deb.debian.org/debian-security/dists/bookworm-security/InRelease  Connection failed [IP: 151.101.178.132 80]
+W: Some index files failed to download. They have been ignored, or old ones used instead.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+E: Unable to locate package code
+Error: building at STEP "RUN apt-get update &&     apt-get install -y code": while running runtime: exit status 100
+> podman build -t villani/webserver:latest .
+STEP 1/3: FROM nginx:latest
+STEP 2/3: RUN apt-get update && WORKDIR /app
+Ign:1 http://deb.debian.org/debian bookworm InRelease
+Ign:2 http://deb.debian.org/debian bookworm-updates InRelease
+Ign:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Ign:1 http://deb.debian.org/debian bookworm InRelease
+Ign:2 http://deb.debian.org/debian bookworm-updates InRelease
+Ign:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Ign:1 http://deb.debian.org/debian bookworm InRelease
+Ign:2 http://deb.debian.org/debian bookworm-updates InRelease
+Ign:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Err:1 http://deb.debian.org/debian bookworm InRelease
+  Connection failed [IP: 151.101.178.132 80]
+Err:2 http://deb.debian.org/debian bookworm-updates InRelease
+  Connection failed [IP: 151.101.178.132 80]
+Err:3 http://deb.debian.org/debian-security bookworm-security InRelease
+  Connection failed [IP: 151.101.178.132 80]
+Reading package lists...
+W: Failed to fetch http://deb.debian.org/debian/dists/bookworm/InRelease  Connection failed [IP: 151.101.178.132 80]
+W: Failed to fetch http://deb.debian.org/debian/dists/bookworm-updates/InRelease  Connection failed [IP: 151.101.178.132 80]
+W: Failed to fetch http://deb.debian.org/debian-security/dists/bookworm-security/InRelease  Connection failed [IP: 151.101.178.132 80]
+W: Some index files failed to download. They have been ignored, or old ones used instead.
+/bin/sh: 1: WORKDIR: not found
+Error: building at STEP "RUN apt-get update && WORKDIR /app": while running runtime: exit status 127
+> podman build -t villani/webserver:latest .
+STEP 1/4: FROM nginx:latest
+STEP 2/4: RUN apt-get update
+Ign:1 http://deb.debian.org/debian bookworm InRelease
+Ign:2 http://deb.debian.org/debian bookworm-updates InRelease
+Ign:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Ign:1 http://deb.debian.org/debian bookworm InRelease
+Ign:2 http://deb.debian.org/debian bookworm-updates InRelease
+Ign:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Ign:1 http://deb.debian.org/debian bookworm InRelease
+Ign:2 http://deb.debian.org/debian bookworm-updates InRelease
+Ign:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Err:1 http://deb.debian.org/debian bookworm InRelease
+  Connection failed [IP: 151.101.178.132 80]
+Err:2 http://deb.debian.org/debian bookworm-updates InRelease
+  Connection failed [IP: 151.101.178.132 80]
+Err:3 http://deb.debian.org/debian-security bookworm-security InRelease
+  Connection failed [IP: 151.101.178.132 80]
+Reading package lists...
+W: Failed to fetch http://deb.debian.org/debian/dists/bookworm/InRelease  Connection failed [IP: 151.101.178.132 80]
+W: Failed to fetch http://deb.debian.org/debian/dists/bookworm-updates/InRelease  Connection failed [IP: 151.101.178.132 80]
+W: Failed to fetch http://deb.debian.org/debian-security/dists/bookworm-security/InRelease  Connection failed [IP: 151.101.178.132 80]
+W: Some index files failed to download. They have been ignored, or old ones used instead.
+--> 59308e9c422a
+STEP 3/4: WORKDIR /app
+--> 03a63b16b1f1
+STEP 4/4: COPY ./html /usr/share/nginx/html
+COMMIT villani/webserver:latest
+--> 0f97d330d0b2
+Successfully tagged localhost/villani/webserver:latest
+0f97d330d0b269d0f03268696934563542d4c07728b83d7af6ac4fb73b9c444c
+> 
+> # Listando imagem construída
+> podman images
+REPOSITORY                   TAG         IMAGE ID      CREATED         SIZE
+localhost/villani/webserver  latest      0f97d330d0b2  20 seconds ago  192 MB
+docker.io/library/ubuntu     latest      b1e9cef3f297  5 weeks ago     80.6 MB
+docker.io/library/nginx      latest      9527c0f683c3  7 weeks ago     192 MB
+> podman run -d -p 80:8080 webserver
+Error: rootlessport cannot expose privileged port 80, you can add 'net.ipv4.ip_unprivileged_port_start=80' to /etc/sysctl.conf (currently 1024), or choose a larger port number (>= 1024): listen tcp 0.0.0.0:80: bind: permission denied
+> podman run -d -p 8080:80 webserver
+f799a89e99d9962d1be55d14904b8dee115da7431219ffc8d635c8702b0ccdff
+> 
+> # Listando container em execução
+> podman ps
+CONTAINER ID  IMAGE                               COMMAND               CREATED         STATUS         PORTS                 NAMES
+f799a89e99d9  localhost/villani/webserver:latest  nginx -g daemon o...  20 seconds ago  Up 21 seconds  0.0.0.0:8080->80/tcp  trusting_ishizaka
+> podman exec f79 bash
+> 
+> podman ps
+CONTAINER ID  IMAGE                               COMMAND               CREATED         STATUS         PORTS                 NAMES
+f799a89e99d9  localhost/villani/webserver:latest  nginx -g daemon o...  55 seconds ago  Up 55 seconds  0.0.0.0:8080->80/tcp  trusting_ishizaka
+> 
+> podman stop f79
+f79
+> 
+> podman ps
+CONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES
+> podman ps -a
+CONTAINER ID  IMAGE                               COMMAND               CREATED             STATUS                    PORTS                 NAMES
+8d903d7ad336  docker.io/library/ubuntu:latest     bash                  3 days ago          Exited (0) 3 days ago                           eloquent_bardeen
+47f1b5dea96a  docker.io/library/nginx:latest      nginx -g daemon o...  2 days ago          Exited (0) 2 days ago     0.0.0.0:8080->80/tcp  webserver
+66cb2619b3c7  docker.io/library/nginx:latest      nginx -g daemon o...  2 days ago          Exited (137) 2 days ago   0.0.0.0:8081->80/tcp  webserver2
+6c5127df186f  localhost/villani/webserver:latest  nginx -g daemon o...  About a minute ago  Created                   0.0.0.0:80->8080/tcp  amazing_darwin
+f799a89e99d9  localhost/villani/webserver:latest  nginx -g daemon o...  About a minute ago  Exited (0) 8 seconds ago  0.0.0.0:8080->80/tcp  trusting_ishizaka
+> 
+> podman run -d -p 8080:80 -n newwebserver webserver
+Error: unknown shorthand flag: 'n' in -n
+See 'podman run --help'
+> podman run -d -p 8080:80 --name newwebserver webserver
+7b1092a24a02acf5a5e8501eb8e7efa27232f5acf81ce0e6d82939ccb6c26efe
+> 
+> podman ps
+CONTAINER ID  IMAGE                               COMMAND               CREATED        STATUS        PORTS                 NAMES
+7b1092a24a02  localhost/villani/webserver:latest  nginx -g daemon o...  8 seconds ago  Up 8 seconds  0.0.0.0:8080->80/tcp  newwebserver
+> 
+> podman exec -it newwebserver bash
+root@7b1092a24a02:/app# 
+root@7b1092a24a02:/app# ls /usr/share/
+X11/             bug/             debianutils/     dpkg/            gdb/             libc-bin/        man/             nginx/           pixmaps/         util-linux/      
+base-files/      ca-certificates/ dict/            fontconfig/      info/            libgcrypt20/     maven-repo/      pam/             polkit-1/        xml/             
+base-passwd/     common-licenses/ doc/             fonts/           java/            lintian/         menu/            pam-configs/     tabset/          zoneinfo/        
+bash-completion/ debconf/         doc-base/        gcc/             keyrings/        locale/          misc/            perl5/           terminfo/        zsh/             
+root@7b1092a24a02:/app# ls /usr/share/nginx/html/
+50x.html    index.html  
+root@7b1092a24a02:/app# cat /usr/share/nginx/html/
+50x.html    index.html  
+root@7b1092a24a02:/app# cat /usr/share/nginx/html/index.html 
+<h1>Olá Full Cycle</h1>root@7b1092a24a02:/app# exit
+exit
+> 
+> podman ps
+CONTAINER ID  IMAGE                               COMMAND               CREATED         STATUS         PORTS                 NAMES
+7b1092a24a02  localhost/villani/webserver:latest  nginx -g daemon o...  18 minutes ago  Up 18 minutes  0.0.0.0:8080->80/tcp  newwebserver
+> 
+> podman stop newwebserver 
+newwebserver
