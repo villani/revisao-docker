@@ -1,9 +1,9 @@
 # Definindo imagem de origem
-FROM nginx:latest
+FROM docker.io/library/nginx:latest
 
 # Executando comandos dentro da imagem
 RUN apt update && \
-    apt install vim
+    apt install -y vim
 
 # Definindo diretório de trabalho
 WORKDIR /app
