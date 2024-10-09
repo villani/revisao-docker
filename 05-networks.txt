@@ -1,0 +1,107 @@
+## ENTENDENDO TIPOS DE NETWORK ##
+# bridge - host - overlay - maclan - none
+# Trabalhando com bridge
+# listando redes usadas
+# inspecionar a rede
+# atachar um container em execução
+# criando rede e atribuindo container
+# conectando container a rede
+# EXECUTANDO O ROTEIRO
+podman network ls
+podman network inspect podman
+podman ls
+podman ps
+podman run -d --name ubuntu1 bash
+podman ps
+podman start -dit ubuntu1
+podman start -d -it ubuntu1
+podman rm ubuntu1
+podman run -dit --name ubuntu1 bash
+podman run -dit --name ubuntu2 bash
+podman ps
+podman network inspect podman
+podman network ls
+podman exec -it ubuntu1 bash
+podman exec ubuntu2 bash
+podman exec -it ubuntu2 bash
+podman network connect podman ubuntu1
+podman rm ubuntu1 ubuntu2
+podman rm -f ubuntu1 ubuntu2
+podman ps
+podman ps -a
+# Criando rede
+podman network create --driver bridge minharede
+podman network ls
+podman network inspect minharede
+podman p
+podman ps
+podman run -dit --name ubuntu1 bash
+podman run -dit --name ubuntu2 bash
+podman ps
+podman exec -it ubuntu1 bash
+podman network connect ubuntu1 minharede
+podman network connect minharede ubuntu1
+podman run -dit --name ubuntu3 --network minharede
+podman run -dit --name ubuntu3 --network minharede bash
+podman network ls
+uname
+uname --version
+sudo vim /home/villani/.config/cni/net.d/minharede.conflist
+podman system reset
+podman ps -a
+podman ps
+podman network ls
+podman run -dit --name ubuntu1 bash
+podman network connect minharede ubuntu1
+podman run -dit --name ubuntu2 --network minharede bash
+podman run -dit --name ubuntu3 --network minharede bash
+podman ps
+podman exec -it ubuntu2 bash
+podman atached ubuntu3
+podman attached ubuntu3
+podman attach ubuntu3
+podman network inspect minharede
+podman networks
+podman network
+podman network --help
+podman network connect --help
+podman network connect ubuntu1
+podman network connect minharede ubuntu1
+## TRABALHANDO COM HOST ##
+podman run -d --name webserver --driver host nginx
+podman run -d --name webserver --network host nginx
+podman ps
+podman ps -a
+podman start webserver
+podman ps
+podman rm webserver
+podman run -d --name webserver1 --port 8083:80 nginx
+podman run -d --name webserver1 -port 8083:80 nginx
+podman run -d --name webserver1 -p 8083:80 nginx
+podman ps
+curl localhost:8083
+podman run -d --name webserver2 --network host nginx
+podman ps
+podman run -dit --name webserver3 --network host nginx
+podman ps
+podman network ls
+apt update
+sudo apt update
+sudo apt install docker
+docker ps
+docker
+apt install docker
+sudo apt install docker
+sudo service docker start
+sudo systemctl start docker
+sudo systemctl enable docker
+ls /etc/systemd
+ls /etc/systemd/system
+sudo vim /etc/systemd/system/docker.service
+ls /etc/systemd/system
+sudo vim /etc/systemd/system/docker.socket
+sudo service docker start
+systemctl status docker.service
+ls /etc/systemd/system
+reboot
+sudo reboot
