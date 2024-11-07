@@ -1,0 +1,675 @@
+> ## ACESSANDO DOCKER HOST ##
+> # Subindo um serviço no Docker Host #
+> # Acessando o serviço pelo host.docker.internal #
+> 
+> # EXECUÇÃO DO ROTEIRO #
+> # - Instalando e subindo um serviço no Docker Host
+> sudo apt install php8
+[sudo] password for villani: 
+Reading package lists... Done 
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package php8
+> 
+> sudo apt install php8.1
+php8.1                 php8.1-common          php8.1-gearman         php8.1-interbase       php8.1-msgpack         php8.1-ps              php8.1-snmp            php8.1-uploadprogress  php8.1-zip
+php8.1-amqp            php8.1-curl            php8.1-gmagick         php8.1-intl            php8.1-mysql           php8.1-pspell          php8.1-soap            php8.1-uuid            php8.1-zmq
+php8.1-apcu            php8.1-dba             php8.1-gmp             php8.1-ldap            php8.1-oauth           php8.1-psr             php8.1-solr            php8.1-xdebug
+php8.1-ast             php8.1-dev             php8.1-gnupg           php8.1-mailparse       php8.1-odbc            php8.1-raphf           php8.1-sqlite3         php8.1-xml
+php8.1-bcmath          php8.1-ds              php8.1-http            php8.1-mbstring        php8.1-opcache         php8.1-readline        php8.1-ssh2            php8.1-xmlrpc
+php8.1-bz2             php8.1-enchant         php8.1-igbinary        php8.1-memcache        php8.1-pcov            php8.1-redis           php8.1-sybase          php8.1-xsl
+php8.1-cgi             php8.1-fpm             php8.1-imagick         php8.1-memcached       php8.1-pgsql           php8.1-rrd             php8.1-tidy            php8.1-yac
+php8.1-cli             php8.1-gd              php8.1-imap            php8.1-mongodb         php8.1-phpdbg          php8.1-smbclient       php8.1-uopz            php8.1-yaml
+> sudo apt install php8.1
+php8.1                 php8.1-common          php8.1-gearman         php8.1-interbase       php8.1-msgpack         php8.1-ps              php8.1-snmp            php8.1-uploadprogress  php8.1-zip
+php8.1-amqp            php8.1-curl            php8.1-gmagick         php8.1-intl            php8.1-mysql           php8.1-pspell          php8.1-soap            php8.1-uuid            php8.1-zmq
+php8.1-apcu            php8.1-dba             php8.1-gmp             php8.1-ldap            php8.1-oauth           php8.1-psr             php8.1-solr            php8.1-xdebug
+php8.1-ast             php8.1-dev             php8.1-gnupg           php8.1-mailparse       php8.1-odbc            php8.1-raphf           php8.1-sqlite3         php8.1-xml
+php8.1-bcmath          php8.1-ds              php8.1-http            php8.1-mbstring        php8.1-opcache         php8.1-readline        php8.1-ssh2            php8.1-xmlrpc
+php8.1-bz2             php8.1-enchant         php8.1-igbinary        php8.1-memcache        php8.1-pcov            php8.1-redis           php8.1-sybase          php8.1-xsl
+php8.1-cgi             php8.1-fpm             php8.1-imagick         php8.1-memcached       php8.1-pgsql           php8.1-rrd             php8.1-tidy            php8.1-yac
+php8.1-cli             php8.1-gd              php8.1-imap            php8.1-mongodb         php8.1-phpdbg          php8.1-smbclient       php8.1-uopz            php8.1-yaml
+> sudo apt install php8.1
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  apache2 apache2-bin apache2-data apache2-utils bzip2 libapache2-mod-php8.1 libapr1 libaprutil1 libaprutil1-dbd-sqlite3 libaprutil1-ldap liblua5.3-0 mailcap mime-support php-common php8.1-cli php8.1-common
+  php8.1-opcache php8.1-readline ssl-cert
+Suggested packages:
+  apache2-doc apache2-suexec-pristine | apache2-suexec-custom www-browser bzip2-doc php-pear
+The following NEW packages will be installed:
+  apache2 apache2-bin apache2-data apache2-utils bzip2 libapache2-mod-php8.1 libapr1 libaprutil1 libaprutil1-dbd-sqlite3 libaprutil1-ldap liblua5.3-0 mailcap mime-support php-common php8.1 php8.1-cli
+  php8.1-common php8.1-opcache php8.1-readline ssl-cert
+0 upgraded, 20 newly installed, 0 to remove and 58 not upgraded.
+Need to get 7267 kB of archives.
+After this operation, 29.8 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libapr1 amd64 1.7.0-8ubuntu0.22.04.2 [108 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libaprutil1 amd64 1.6.1-5ubuntu4.22.04.2 [92.8 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libaprutil1-dbd-sqlite3 amd64 1.6.1-5ubuntu4.22.04.2 [11.3 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libaprutil1-ldap amd64 1.6.1-5ubuntu4.22.04.2 [9170 B]
+Enabling conf other-vhosts-access-log.
+Enabling conf security.
+Enabling conf serve-cgi-bin.
+Enabling site 000-default.
+info: Switch to mpm prefork for package libapache2-mod-php8.1
+Module mpm_event disabled.
+Enabling module mpm_prefork.
+info: Executing deferred 'a2enmod php8.1' for package libapache2-mod-php8.1
+Enabling module php8.1.
+Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/apache-htcacheclean.service → /lib/systemd/system/apache-htcacheclean.service.
+Setting up php8.1 (8.1.2-1ubuntu2.19) ...
+Processing triggers for ufw (0.36.1-4ubuntu0.1) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+Processing triggers for php8.1-cli (8.1.2-1ubuntu2.19) ...
+Processing triggers for libapache2-mod-php8.1 (8.1.2-1ubuntu2.19) ...
+> 
+> # Subindo um serviço no Docker Host
+> php -S 0.0.0.0:8000
+[Thu Nov  7 08:54:12 2024] PHP 8.1.2-1ubuntu2.19 Development Server (http://0.0.0.0:8000) started
+[Thu Nov  7 08:54:47 2024] 127.0.0.1:57132 Accepted
+[Thu Nov  7 08:54:47 2024] 127.0.0.1:57132 [404]: GET / - No such file or directory
+[Thu Nov  7 08:54:47 2024] 127.0.0.1:57132 Closing
+[Thu Nov  7 08:54:47 2024] 127.0.0.1:57138 Accepted
+[Thu Nov  7 08:54:47 2024] 127.0.0.1:57138 [404]: GET /favicon.ico - No such file or directory
+[Thu Nov  7 08:54:47 2024] 127.0.0.1:57138 Closing
+[Thu Nov  7 08:54:47 2024] 127.0.0.1:57144 Accepted
+[Thu Nov  7 08:55:48 2024] 127.0.0.1:57144 Closed without sending a request; it was probably just an unused speculative preconnection
+[Thu Nov  7 08:55:48 2024] 127.0.0.1:57144 Closing
+....
+
+
+> ### ACESSADO POR OUTRO TERMINAL ###
+> # - Subindo um container docker
+> sudo service docker start
+[sudo] password for villani: 
+Job for docker.service failed because the control process exited with error code.      
+See "systemctl status docker.service" and "journalctl -xeu docker.service" for details.
+> 
+> # - Avaliando status do serviço docker
+> systemctl status docker.service
+× docker.service - Docker Application Container Engine
+     Loaded: loaded (/etc/systemd/system/docker.service; disabled; vendor preset: enabled)
+     Active: failed (Result: exit-code) since Thu 2024-11-07 08:58:09 -03; 46s ago
+TriggeredBy: × docker.socket
+       Docs: https://docs.docker.com
+    Process: 28107 ExecStart=/usr/bin/dockerd -H fd:// (code=exited, status=203/EXEC)
+   Main PID: 28107 (code=exited, status=203/EXEC)
+
+Nov 07 08:58:09 VILLANI-202401 systemd[1]: docker.service: Scheduled restart job, restart counter is at 3.
+Nov 07 08:58:09 VILLANI-202401 systemd[1]: Stopped Docker Application Container Engine.
+Nov 07 08:58:09 VILLANI-202401 systemd[1]: docker.service: Start request repeated too quickly.
+Nov 07 08:58:09 VILLANI-202401 systemd[1]: docker.service: Failed with result 'exit-code'.
+Nov 07 08:58:09 VILLANI-202401 systemd[1]: Failed to start Docker Application Container Engine.
+>
+> # Habilitando o serviço docker
+> sudo systemctl enable docker
+Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /etc/systemd/system/docker.service.
+> 
+> # Avaliando serviço docker
+> systemctl status docker.service
+× docker.service - Docker Application Container Engine
+     Loaded: loaded (/etc/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: failed (Result: exit-code) since Thu 2024-11-07 08:58:09 -03; 2min 28s ago
+TriggeredBy: × docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 28107 (code=exited, status=203/EXEC)
+
+Nov 07 08:58:09 VILLANI-202401 systemd[1]: docker.service: Scheduled restart job, restart counter is at 3.
+Nov 07 08:58:09 VILLANI-202401 systemd[1]: Stopped Docker Application Container Engine.
+Nov 07 08:58:09 VILLANI-202401 systemd[1]: docker.service: Start request repeated too quickly.
+Nov 07 08:58:09 VILLANI-202401 systemd[1]: docker.service: Failed with result 'exit-code'.
+Nov 07 08:58:09 VILLANI-202401 systemd[1]: Failed to start Docker Application Container Engine.
+>
+> # Tentando iniciar o serviço novamente
+> sudo service docker start
+Job for docker.service failed because the control process exited with error code.
+See "systemctl status docker.service" and "journalctl -xeu docker.service" for details.
+> 
+> # Tentando pelo podman
+> podman ps
+CONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES
+> 
+> # Subindo um container podman
+> podman run --rm -it --name ubuntu ubuntu bash
+Resolved "ubuntu" as an alias (/etc/containers/registries.conf.d/shortnames.conf)
+Trying to pull docker.io/library/ubuntu:latest...
+Getting image source signatures
+Copying blob ff65ddf9395b done
+Copying config 59ab366372 done
+Writing manifest to image destination
+Storing signatures
+root@16e2f42baa4c:/# curl
+bash: curl: command not found
+root@16e2f42baa4c:/# sudo apt install curl
+bash: sudo: command not found
+root@16e2f42baa4c:/# apt install curl
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package curl
+root@16e2f42baa4c:/# # - Atualizando repositorios
+root@16e2f42baa4c:/# apt update
+Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:3 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [574 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:6 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:7 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [15.3 kB]
+Get:8 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [537 kB]
+Get:9 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [720 kB]
+Get:10 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:11 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:12 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [542 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [923 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [18.4 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [792 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [11.8 kB]
+Fetched 26.3 MB in 8s (3404 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+3 packages can be upgraded. Run 'apt list --upgradable' to see them.
+root@16e2f42baa4c:/#
+root@16e2f42baa4c:/# # - Tentando instalar o curl
+root@16e2f42baa4c:/# apt install curl
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  ca-certificates krb5-locales libbrotli1 libcurl4t64 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-common libldap2 libnghttp2-14 libpsl5t64 librtmp1 libsasl2-2
+  libsasl2-modules libsasl2-modules-db libssh-4 openssl publicsuffix
+Suggested packages:
+  krb5-doc krb5-user libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
+The following NEW packages will be installed:
+  ca-certificates curl krb5-locales libbrotli1 libcurl4t64 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-common libldap2 libnghttp2-14 libpsl5t64 librtmp1 libsasl2-2
+  libsasl2-modules libsasl2-modules-db libssh-4 openssl publicsuffix
+0 upgraded, 21 newly installed, 0 to remove and 3 not upgraded.
+Need to get 3563 kB of archives.
+After this operation, 9199 kB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssl amd64 3.0.13-0ubuntu3.4 [1003 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble/main amd64 ca-certificates all 20240203 [159 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 krb5-locales all 1.20.1-6ubuntu2.1 [14.0 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5support0 amd64 1.20.1-6ubuntu2.1 [33.6 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libk5crypto3 amd64 1.20.1-6ubuntu2.1 [81.7 kB]
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.38.2 /usr/local/share/perl/5.38.2 /usr/lib/x86_64-linux-gnu/perl5/5.38 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.38 /usr/share/perl/5.38 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8.)
+debconf: falling back to frontend: Teletype
+Updating certificates in /etc/ssl/certs...
+146 added, 0 removed; done.
+Setting up libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.1) ...
+Setting up libssh-4:amd64 (0.10.6-2build2) ...
+Setting up libcurl4t64:amd64 (8.5.0-2ubuntu10.4) ...
+Setting up curl (8.5.0-2ubuntu10.4) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.3) ...
+Processing triggers for ca-certificates (20240203) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+root@16e2f42baa4c:/# # - Acessando o servico no host docker
+root@16e2f42baa4c:/# curl http://host.docker.internal:8000
+curl: (7) Failed to connect to host.docker.internal port 8000 after 76345 ms: Couldn't connect to server
+root@16e2f42baa4c:/# curl http://host.containers.internal:8000
+curl: (7) Failed to connect to host.containers.internal port 8000 after 0 ms: Couldn't connect to server
+root@16e2f42baa4c:/# ## - OBS: Aparentemente n
+root@16e2f42baa4c:/# ## - OBS: Aparentemente nao e possivel com o PODMAN
+root@16e2f42baa4c:/# ## - Tentando subir o docker 
+root@16e2f42baa4c:/# exit 
+exit
+> 
+> # - Avaliando se ha containers podman em execução
+> podman ps
+CONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES
+> 
+> # - Tentando subir novamente o docker
+> docker ps
+Command 'docker' not found, but can be installed with:
+sudo snap install docker         # version 24.0.5, or
+sudo apt  install podman-docker  # version 3.4.4+ds1-1ubuntu1.22.04.2
+sudo apt  install docker.io      # version 24.0.7-0ubuntu2~22.04.1
+See 'snap info docker' for additional versions.
+>
+> sudo service docker restart
+[sudo] password for villani: 
+Job for docker.service failed because the control process exited with error code.
+See "systemctl status docker.service" and "journalctl -xeu docker.service" for details.
+> apt --help
+apt 2.4.11 (amd64)
+Usage: apt [options] command
+
+apt is a commandline package manager and provides commands for
+searching and managing as well as querying information about packages.
+It provides the same functionality as the specialized APT tools,
+like apt-get and apt-cache, but enables options more suitable for
+interactive use by default.
+
+Most used commands:
+  list - list packages based on package names
+  search - search in package descriptions
+  show - show package details
+  install - install packages
+  reinstall - reinstall packages
+  remove - remove packages
+  autoremove - Remove automatically all unused packages
+  update - update list of available packages
+  upgrade - upgrade the system by installing/upgrading packages
+  full-upgrade - upgrade the system by removing/installing/upgrading packages
+  edit-sources - edit the source information file
+  satisfy - satisfy dependency strings
+
+See apt(8) for more information about the available commands.
+Configuration options and syntax is detailed in apt.conf(5).
+> sudo apt remove podman
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  buildah catatonit conmon containernetworking-plugins crun dconf-gsettings-backend dconf-service dns-root-data dnsmasq-base fuse-overlayfs glib-networking glib-networking-common glib-networking-services     
+  golang-github-containernetworking-plugin-dnsname golang-github-containers-common golang-github-containers-image gsettings-desktop-schemas libarchive13 libavahi-client3 libavahi-common-data
+  libavahi-common3 libavahi-glib1 libdconf1 libgpgme11 libostree-1-1 libproxy1v5 libslirp0 libsoup2.4-1 libsoup2.4-common libyajl2 session-migration slirp4netns uidmap
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  podman
+0 upgraded, 0 newly installed, 1 to remove and 58 not upgraded.
+After this operation, 36.5 MB disk space will be freed.
+Do you want to continue? [Y/n] Y
+(Reading database ... 25707 files and directories currently installed.)
+Display all 472 possibilities? (y or n)
+> sudo apt remove docker
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  buildah catatonit conmon containernetworking-plugins crun dconf-gsettings-backend dconf-service dns-root-data dnsmasq-base fuse-overlayfs glib-networking glib-networking-common glib-networking-services     
+  golang-github-containernetworking-plugin-dnsname golang-github-containers-common golang-github-containers-image gsettings-desktop-schemas libarchive13 libavahi-client3 libavahi-common-data
+  libavahi-common3 libavahi-glib1 libdconf1 libgpgme11 libostree-1-1 libproxy1v5 libslirp0 libsoup2.4-1 libsoup2.4-common libyajl2 session-migration slirp4netns uidmap wmdocker
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  docker
+0 upgraded, 0 newly installed, 1 to remove and 58 not upgraded.
+After this operation, 9216 B disk space will be freed.
+Do you want to continue? [Y/n] Y
+(Reading database ... 25524 files and directories currently installed.)
+Removing docker (1.5-2) ...
+> sudo apt remove docker.io
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package 'docker.io' is not installed, so not removed
+The following packages were automatically installed and are no longer required:
+  buildah catatonit conmon containernetworking-plugins crun dconf-gsettings-backend dconf-service dns-root-data dnsmasq-base fuse-overlayfs glib-networking glib-networking-common glib-networking-services
+  golang-github-containernetworking-plugin-dnsname golang-github-containers-common golang-github-containers-image gsettings-desktop-schemas libarchive13 libavahi-client3 libavahi-common-data
+  libavahi-common3 libavahi-glib1 libdconf1 libgpgme11 libostree-1-1 libproxy1v5 libslirp0 libsoup2.4-1 libsoup2.4-common libyajl2 session-migration slirp4netns uidmap wmdocker
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 58 not upgraded.
+> sudo apt remove docker-compose
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package 'docker-compose' is not installed, so not removed
+The following packages were automatically installed and are no longer required:
+  buildah catatonit conmon containernetworking-plugins crun dconf-gsettings-backend dconf-service dns-root-data dnsmasq-base fuse-overlayfs glib-networking glib-networking-common glib-networking-services     
+  golang-github-containernetworking-plugin-dnsname golang-github-containers-common golang-github-containers-image gsettings-desktop-schemas libarchive13 libavahi-client3 libavahi-common-data
+  libavahi-common3 libavahi-glib1 libdconf1 libgpgme11 libostree-1-1 libproxy1v5 libslirp0 libsoup2.4-1 libsoup2.4-common libyajl2 session-migration slirp4netns uidmap wmdocker
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 58 not upgraded.
+> sudo apt remove docker-compose-v2
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package 'docker-compose-v2' is not installed, so not removed
+The following packages were automatically installed and are no longer required:
+  buildah catatonit conmon containernetworking-plugins crun dconf-gsettings-backend dconf-service dns-root-data dnsmasq-base fuse-overlayfs glib-networking glib-networking-common glib-networking-services     
+  golang-github-containernetworking-plugin-dnsname golang-github-containers-common golang-github-containers-image gsettings-desktop-schemas libarchive13 libavahi-client3 libavahi-common-data
+  libavahi-common3 libavahi-glib1 libdconf1 libgpgme11 libostree-1-1 libproxy1v5 libslirp0 libsoup2.4-1 libsoup2.4-common libyajl2 session-migration slirp4netns uidmap wmdocker
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 58 not upgraded.
+> sudo apt remove docker-doc
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Removing libavahi-glib1:amd64 (0.8-5ubuntu5.2) ...
+Removing libavahi-common3:amd64 (0.8-5ubuntu5.2) ...
+Removing libavahi-common-data:amd64 (0.8-5ubuntu5.2) ...
+Removing libdconf1:amd64 (0.40.0-3) ...
+Removing libgpgme11:amd64 (1.16.0-1.2ubuntu4.2) ...
+Removing libproxy1v5:amd64 (0.4.17-2) ...
+Removing slirp4netns (1.0.1-2) ...
+Removing libslirp0:amd64 (4.6.1-1build1) ...
+Removing libsoup2.4-common (2.74.2-3) ...
+Removing libyajl2:amd64 (2.1.0-3ubuntu0.22.04.1) ...
+Removing session-migration (0.3.6) ...
+Removing uidmap (1:4.8.1-2ubuntu2.2) ...
+Removing wmdocker (1.5-2) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for libglib2.0-0:amd64 (2.72.4-0ubuntu2.3) ...
+No schema files found: removed existing output file.
+> apt --help
+apt 2.4.11 (amd64)
+Usage: apt [options] command
+
+apt is a commandline package manager and provides commands for
+searching and managing as well as querying information about packages.
+It provides the same functionality as the specialized APT tools,
+like apt-get and apt-cache, but enables options more suitable for
+interactive use by default.
+
+Most used commands:
+  list - list packages based on package names
+  search - search in package descriptions
+  show - show package details
+  install - install packages
+  reinstall - reinstall packages
+  remove - remove packages
+  autoremove - Remove automatically all unused packages
+  update - update list of available packages
+  upgrade - upgrade the system by installing/upgrading packages
+  full-upgrade - upgrade the system by removing/installing/upgrading packages
+  edit-sources - edit the source information file
+  satisfy - satisfy dependency strings
+
+See apt(8) for more information about the available commands.
+Configuration options and syntax is detailed in apt.conf(5).
+Information about how to configure sources can be found in sources.list(5).
+Package and version choices can be expressed via apt_preferences(5).
+Security details are available in apt-secure(8).
+                                        This APT has Super Cow Powers.
+> sudo apt update
+Get:1 https://download.docker.com/linux/ubuntu jammy InRelease [48.8 kB]
+Err:1 https://download.docker.com/linux/ubuntu jammy InRelease
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 7EA0A9C3F273FCD8
+Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+Hit:3 http://archive.ubuntu.com/ubuntu jammy InRelease   
+Get:4 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+Hit:5 http://archive.ubuntu.com/ubuntu jammy-backports InRelease    
+Reading package lists... Done
+W: GPG error: https://download.docker.com/linux/ubuntu jammy InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 7EA0A9C3F273FCD8
+E: The repository 'https://download.docker.com/linux/ubuntu jammy InRelease' is not signed.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+> for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package 'docker.io' is not installed, so not removed
+0 upgraded, 0 newly installed, 0 to remove and 57 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package 'docker-doc' is not installed, so not removed
+0 upgraded, 0 newly installed, 0 to remove and 57 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package 'docker-compose' is not installed, so not removed
+0 upgraded, 0 newly installed, 0 to remove and 57 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package 'docker-compose-v2' is not installed, so not removed
+0 upgraded, 0 newly installed, 0 to remove and 57 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package 'podman-docker' is not installed, so not removed
+0 upgraded, 0 newly installed, 0 to remove and 57 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package 'containerd' is not installed, so not removed
+0 upgraded, 0 newly installed, 0 to remove and 57 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package 'runc' is not installed, so not removed
+0 upgraded, 0 newly installed, 0 to remove and 57 not upgraded.
+> # Add Docker's official GPG key:
+> sudo apt-get update
+ apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+rsudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+Get:1 https://download.docker.com/linux/ubuntu jammy InRelease [48.8 kB]
+Err:1 https://download.docker.com/linux/ubuntu jammy InRelease
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 7EA0A9C3F273FCD8
+Hit:2 http://security.ubuntu.com/ubuntu jammy-security InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Reading package lists... Done
+W: GPG error: https://download.docker.com/linux/ubuntu jammy InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 7EA0A9C3F273FCD8
+E: The repository 'https://download.docker.com/linux/ubuntu jammy InRelease' is not signed.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+> sudo apt-get install ca-certificates curl
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+ca-certificates is already the newest version (20240203~22.04.1).
+curl is already the newest version (7.81.0-1ubuntu1.18).
+0 upgraded, 0 newly installed, 0 to remove and 57 not upgraded.
+> sudo install -m 0755 -d /etc/apt/keyrings
+> sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+> sudo chmod a+r /etc/apt/keyrings/docker.asc
+> echo \
+ "deb [>   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+>   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+tee /et>   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+> sudo apt-get update
+Get:1 https://download.docker.com/linux/ubuntu jammy InRelease [48.8 kB]
+Get:2 https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages [40.7 kB]
+Hit:3 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:4 http://security.ubuntu.com/ubuntu jammy-security InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Fetched 89.5 kB in 1s (98.3 kB/s)
+Reading package lists... Done
+> sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  dbus-user-session docker-ce-rootless-extras libltdl7 libslirp0 pigz slirp4netns
+Suggested packages:
+  aufs-tools cgroupfs-mount | cgroup-lite
+The following NEW packages will be installed:
+  containerd.io dbus-user-session docker-buildx-plugin docker-ce docker-ce-cli docker-ce-rootless-extras docker-compose-plugin libltdl7 libslirp0 pigz slirp4netns
+0 upgraded, 11 newly installed, 0 to remove and 57 not upgraded.
+Need to get 123 MB of archives.
+After this operation, 442 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 https://download.docker.com/linux/ubuntu jammy/stable amd64 containerd.io amd64 1.7.22-1 [29.5 MB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy/universe amd64 pigz amd64 2.6-1 [63.6 kB]     
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 dbus-user-session amd64 1.12.20-2ubuntu4.1 [9442 B]
+Get:4 http://archive.ubuntu.com/ubuntu jammy/main amd64 libltdl7 amd64 2.4.6-15build2 [39.6 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy/main amd64 libslirp0 amd64 4.6.1-1build1 [61.5 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy/universe amd64 slirp4netns amd64 1.0.1-2 [28.2 kB]
+Get:7 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-buildx-plugin amd64 0.17.1-1~ubuntu.22.04~jammy [30.3 MB]
+Get:8 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-ce-cli amd64 5:27.3.1-1~ubuntu.22.04~jammy [15.0 MB]
+Get:9 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-ce amd64 5:27.3.1-1~ubuntu.22.04~jammy [25.6 MB]
+Get:10 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-ce-rootless-extras amd64 5:27.3.1-1~ubuntu.22.04~jammy [9589 kB]
+Get:11 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-compose-plugin amd64 2.29.7-1~ubuntu.22.04~jammy [12.7 MB]
+Fetched 123 MB in 21s (5754 kB/s)
+Selecting previously unselected package pigz.
+(Reading database ... 25121 files and directories currently installed.)
+Preparing to unpack .../00-pigz_2.6-1_amd64.deb ...
+Unpacking pigz (2.6-1) ...
+Selecting previously unselected package containerd.io.
+Preparing to unpack .../01-containerd.io_1.7.22-1_amd64.deb ...
+Unpacking containerd.io (1.7.22-1) ...
+Selecting previously unselected package dbus-user-session.
+Preparing to unpack .../02-dbus-user-session_1.12.20-2ubuntu4.1_amd64.deb ...
+Unpacking dbus-user-session (1.12.20-2ubuntu4.1) ...
+Selecting previously unselected package docker-buildx-plugin.
+Preparing to unpack .../03-docker-buildx-plugin_0.17.1-1~ubuntu.22.04~jammy_amd64.deb ...
+Unpacking docker-buildx-plugin (0.17.1-1~ubuntu.22.04~jammy) ...
+Selecting previously unselected package docker-ce-cli.
+Preparing to unpack .../04-docker-ce-cli_5%3a27.3.1-1~ubuntu.22.04~jammy_amd64.deb ...
+Unpacking docker-ce-cli (5:27.3.1-1~ubuntu.22.04~jammy) ...
+Selecting previously unselected package docker-ce.
+Preparing to unpack .../05-docker-ce_5%3a27.3.1-1~ubuntu.22.04~jammy_amd64.deb ...
+Unpacking docker-ce (5:27.3.1-1~ubuntu.22.04~jammy) ...
+Selecting previously unselected package docker-ce-rootless-extras.
+Preparing to unpack .../06-docker-ce-rootless-extras_5%3a27.3.1-1~ubuntu.22.04~jammy_amd64.deb ...
+Unpacking docker-ce-rootless-extras (5:27.3.1-1~ubuntu.22.04~jammy) ...
+Selecting previously unselected package docker-compose-plugin.
+Preparing to unpack .../07-docker-compose-plugin_2.29.7-1~ubuntu.22.04~jammy_amd64.deb ...
+Unpacking docker-compose-plugin (2.29.7-1~ubuntu.22.04~jammy) ...
+Selecting previously unselected package libltdl7:amd64.
+Preparing to unpack .../08-libltdl7_2.4.6-15build2_amd64.deb ...
+Unpacking libltdl7:amd64 (2.4.6-15build2) ...
+Selecting previously unselected package libslirp0:amd64.
+Preparing to unpack .../09-libslirp0_4.6.1-1build1_amd64.deb ...
+Unpacking libslirp0:amd64 (4.6.1-1build1) ...
+Selecting previously unselected package slirp4netns.
+Preparing to unpack .../10-slirp4netns_1.0.1-2_amd64.deb ...
+Unpacking slirp4netns (1.0.1-2) ...
+Setting up dbus-user-session (1.12.20-2ubuntu4.1) ...
+Setting up docker-buildx-plugin (0.17.1-1~ubuntu.22.04~jammy) ...
+Setting up containerd.io (1.7.22-1) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service → /lib/systemd/system/containerd.service.
+Setting up docker-compose-plugin (2.29.7-1~ubuntu.22.04~jammy) ...
+Setting up libltdl7:amd64 (2.4.6-15build2) ...
+Setting up docker-ce-cli (5:27.3.1-1~ubuntu.22.04~jammy) ...
+Setting up libslirp0:amd64 (4.6.1-1build1) ...
+Setting up pigz (2.6-1) ...
+Setting up docker-ce-rootless-extras (5:27.3.1-1~ubuntu.22.04~jammy) ...
+Setting up slirp4netns (1.0.1-2) ...
+Setting up docker-ce (5:27.3.1-1~ubuntu.22.04~jammy) ...
+Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /etc/systemd/system/docker.socket.
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+> docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+c1ec31eb5944: Pull complete
+Digest: sha256:d211f485f2dd1dee407a80973c8f129f00d54604d2c90732e8e320e5038a0348
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+> # - Docker reinstalado
+> # - Subindo um container docker
+> docker run --rm -it --name ubuntu ubuntu bash
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+ff65ddf9395b: Pull complete 
+Digest: sha256:99c35190e22d294cdace2783ac55effc69d32896daaa265f0bbedbcde4fbe3e5
+Status: Downloaded newer image for ubuntu:latest
+root@22995a15da5a:/# # - Acessando o servico no Docker Host
+root@22995a15da5a:/# curl --help
+bash: curl: command not found
+root@22995a15da5a:/# apt update
+Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:3 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [720 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:5 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [537 kB]
+Get:6 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [574 kB]
+Get:7 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [15.3 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]      
+Get:9 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:10 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:11 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [923 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [18.4 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [542 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [792 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [11.8 kB]
+Fetched 26.3 MB in 8s (3269 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+3 packages can be upgraded. Run 'apt list --upgradable' to see them.
+root@22995a15da5a:/# sudo apt install curl -Y
+bash: sudo: command not found
+root@22995a15da5a:/# apt install curl -Y
+E: Command line option 'Y' [from -Y] is not understood in combination with the other options.
+root@22995a15da5a:/# apt install curl -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  ca-certificates krb5-locales libbrotli1 libcurl4t64 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-common libldap2 libnghttp2-14 libpsl5t64 librtmp1 libsasl2-2
+  libsasl2-modules libsasl2-modules-db libssh-4 openssl publicsuffix
+Suggested packages:
+  krb5-doc krb5-user libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
+The following NEW packages will be installed:
+  ca-certificates curl krb5-locales libbrotli1 libcurl4t64 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-common libldap2 libnghttp2-14 libpsl5t64 librtmp1 libsasl2-2
+  libsasl2-modules libsasl2-modules-db libssh-4 openssl publicsuffix
+0 upgraded, 21 newly installed, 0 to remove and 3 not upgraded.
+Need to get 3563 kB of archives.
+After this operation, 9199 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssl amd64 3.0.13-0ubuntu3.4 [1003 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble/main amd64 ca-certificates all 20240203 [159 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 krb5-locales all 1.20.1-6ubuntu2.1 [14.0 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5support0 amd64 1.20.1-6ubuntu2.1 [33.6 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libk5crypto3 amd64 1.20.1-6ubuntu2.1 [81.7 kB]
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.38.2 /usr/local/share/perl/5.38.2 /usr/lib/x86_64-linux-gnu/perl5/5.38 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.38 /usr/share/perl/5.38 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8.)
+debconf: falling back to frontend: Teletype
+Updating certificates in /etc/ssl/certs...
+146 added, 0 removed; done.
+Setting up libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.1) ...
+Setting up libssh-4:amd64 (0.10.6-2build2) ...
+Setting up libcurl4t64:amd64 (8.5.0-2ubuntu10.4) ...
+Setting up curl (8.5.0-2ubuntu10.4) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.3) ...
+Processing triggers for ca-certificates (20240203) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+root@22995a15da5a:/# curl http://host.docker.internal:8000
+curl: (28) Failed to connect to host.docker.internal port 8000 after 133878 ms: Couldn't connect to server
+root@22995a15da5a:/# curl http://host.docker.internal:8000
+curl: (28) Failed to connect to host.docker.internal port 8000 after 133564 ms: Couldn't connect to server
+root@22995a15da5a:/# curl http://host.docker.internal:8001
+<h1>Olá Full Cycle</h1>
+root@22995a15da5a:/#
+root@22995a15da5a:/#
+root@22995a15da5a:/# ## - Acessando a partir do servico iniciado no host e n
+root@22995a15da5a:/# ## - Acessando a partir do servico iniciado no host e nao do WSL
+root@22995a15da5a:/#
+root@22995a15da5a:/# exit
+exit
+> 
